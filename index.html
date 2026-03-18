@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Archive de mémoires</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+
+    <style>
+        body,
+        html {
+            font-family: 'Pixelify Sans', sans-serif;
+            background: black;
+            color: white;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* 인트로 화면 */
+        #intro {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            background: black;
+            cursor: pointer;
+        }
+
+        /* 아카이브 화면 */
+        #archive {
+            display: none;
+            padding-top: 50px;
+        }
+
+        button {
+            background: none;
+            border: 1px solid white;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            font-family: 'Pixelify Sans', sans-serif;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: white;
+            color: black;
+        }
+
+        /* 비메오 플레이어 컨테이너 */
+        #player-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        iframe {
+            border: none;
+            width: 80%;
+            height: 500px;
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="intro" onclick="startArchive()">
+        <h1>Souhaitez-vous entrer dans une mémoire créée par les médias ?</h1>
+        <div id="enter" style="margin-top:20px; animation: fadeIn 2s infinite alternate;">Cliquez n'importe où</div>
+    </div>
+
+    <div id="archive">
+        <h1>ARCHIVE DE MÉMOIRES</h1>
+
+        <button onclick="playVimeo('1174395405')">BANDE 01</button>
+        <button onclick="playVimeo('1174396827')">BANDE 02</button>
+        <button onclick="playVimeo('1174397219')">BANDE 03</button>
+
+        <div id="player-container">
+            <iframe id="vimeoPlayer" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        function startArchive() {
+            document.getElementById("intro").style.display = "none";
+            document.getElementById("archive").style.display = "block";
+        }
+
+        function playVimeo(videoId) {
+            const player = document.getElementById("vimeoPlayer");
+
+            // 자동재생과 보안 옵션이 포함된 URL 생성
+            const vimeoUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479`;
+
+            player.src = vimeoUrl;
+            player.style.display = "block";
+        }
+    </script>
+</body>
+
+</html>
